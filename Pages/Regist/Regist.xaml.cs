@@ -13,12 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UP02.Classes;
+using System.Net.Mail;
 
 namespace UP02.Pages.Regist
 {
-    /// <summary>
-    /// Логика взаимодействия для Regist.xaml
-    /// </summary>
+    
     public partial class Regist : Page
     {
         public Regist(Frame _frame)
@@ -26,117 +25,123 @@ namespace UP02.Pages.Regist
             InitializeComponent();
         }
 
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             bool isValid = true;
 
             // Проверка логина
-            if (string.IsNullOrEmpty(LoginTextBox.Text))
+            if (string.IsNullOrEmpty(LoginTB.Text))
             {
-                LoginTextBox.ToolTip = "Логин не может быть пустым!";
-                LoginTextBox.Background = Brushes.LightPink;
+                LoginTB.ToolTip = "Логин не может быть пустым!";
+                LoginTB.Background = Brushes.LightPink;
                 isValid = false;
             }
             else
             {
-                LoginTextBox.ToolTip = null;
-                LoginTextBox.Background = Brushes.White;
+                LoginTB.ToolTip = null;
+                LoginTB.Background = Brushes.White;
             }
 
             // Проверка пароля
-            if (PasswordBox.SecurePassword.Length == 0)
+            if (PassPB.SecurePassword.Length == 0)
             {
-                PasswordBox.ToolTip = "Пароль не может быть пустым!";
-                PasswordBox.Background = Brushes.LightPink;
+                PassPB.ToolTip = "Пароль не может быть пустым!";
+                PassPB.Background = Brushes.LightPink;
                 isValid = false;
             }
-            else if (PasswordBox.SecurePassword.Length < 6)
+            else if (PassPB.SecurePassword.Length < 6)
             {
-                PasswordBox.ToolTip = "Пароль должен содержать минимум 6 символов!";
-                PasswordBox.Background = Brushes.LightPink;
+                PassPB.ToolTip = "Пароль должен содержать минимум 6 символов!";
+                PassPB.Background = Brushes.LightPink;
                 isValid = false;
             }
             else
             {
-                PasswordBox.ToolTip = null;
-                PasswordBox.Background = Brushes.White;
+                PassPB.ToolTip = null;
+                PassPB.Background = Brushes.White;
             }
 
             // Проверка подтверждения пароля
-            if (ConfirmPasswordBox.SecurePassword.Length == 0)
+            if (ConfirmPassPB.SecurePassword.Length == 0)
             {
-                ConfirmPasswordBox.ToolTip = "Подтверждение пароля не может быть пустым!";
-                ConfirmPasswordBox.Background = Brushes.LightPink;
+                ConfirmPassPB.ToolTip = "Подтверждение пароля не может быть пустым!";
+                ConfirmPassPB.Background = Brushes.LightPink;
                 isValid = false;
             }
-            else if (!PasswordBox.SecurePassword.Equals(ConfirmPasswordBox.SecurePassword))
+            else if (!PassPB.SecurePassword.Equals(ConfirmPassPB.SecurePassword))
             {
-                ConfirmPasswordBox.ToolTip = "Пароли не совпадают!";
-                ConfirmPasswordBox.Background = Brushes.LightPink;
+                ConfirmPassPB.ToolTip = "Пароли не совпадают!";
+                ConfirmPassPB.Background = Brushes.LightPink;
                 isValid = false;
             }
             else
             {
-                ConfirmPasswordBox.ToolTip = null;
-                ConfirmPasswordBox.Background = Brushes.White;
+                ConfirmPassPB.ToolTip = null;
+                ConfirmPassPB.Background = Brushes.White;
             }
 
             // Проверка email
-            if (string.IsNullOrEmpty(EmailTextBox.Text))
+            if (string.IsNullOrEmpty(EmailTB.Text))
             {
-                EmailTextBox.ToolTip = "Email не может быть пустым!";
-                EmailTextBox.Background = Brushes.LightPink;
+                EmailTB.ToolTip = "Email не может быть пустым!";
+                EmailTB.Background = Brushes.LightPink;
+                isValid = false;
+            }
+            else if (!IsValidEmail(EmailTB.Text))
+            {
+                EmailTB.ToolTip = "Неверный формат email!";
+                EmailTB.Background = Brushes.LightPink;
                 isValid = false;
             }
             else
             {
-                EmailTextBox.ToolTip = null;
-                EmailTextBox.Background = Brushes.White;
+                EmailTB.ToolTip = null;
+                EmailTB.Background = Brushes.White;
             }
 
             // Проверка ФИО
-            if (string.IsNullOrEmpty(FioTextBox.Text))
+            if (string.IsNullOrEmpty(FioTB.Text))
             {
-                FioTextBox.ToolTip = "ФИО не может быть пустым!";
-                FioTextBox.Background = Brushes.LightPink;
+                FioTB.ToolTip = "ФИО не может быть пустым!";
+                FioTB.Background = Brushes.LightPink;
                 isValid = false;
             }
             else
             {
-                FioTextBox.ToolTip = null;
-                FioTextBox.Background = Brushes.White;
+                FioTB.ToolTip = null;
+                FioTB.Background = Brushes.White;
             }
 
             // Проверка телефона
-            if (string.IsNullOrEmpty(PhoneTextBox.Text))
+            if (string.IsNullOrEmpty(PhoneTB.Text))
             {
-                PhoneTextBox.ToolTip = "Телефон не может быть пустым!";
-                PhoneTextBox.Background = Brushes.LightPink;
+                PhoneTB.ToolTip = "Телефон не может быть пустым!";
+                PhoneTB.Background = Brushes.LightPink;
                 isValid = false;
             }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(PhoneTextBox.Text, @"^\+?\d{10,15}$"))
+            else if (!System.Text.RegularExpressions.Regex.IsMatch(PhoneTB.Text, @"^\+?\d{10,15}$"))
             {
-                PhoneTextBox.ToolTip = "Неверный формат телефона!";
-                PhoneTextBox.Background = Brushes.LightPink;
+                PhoneTB.ToolTip = "Неверный формат телефона!";
+                PhoneTB.Background = Brushes.LightPink;
                 isValid = false;
             }
             else
             {
-                PhoneTextBox.ToolTip = null;
-                PhoneTextBox.Background = Brushes.White;
+                PhoneTB.ToolTip = null;
+                PhoneTB.Background = Brushes.White;
             }
 
             // Проверка адреса
-            if (string.IsNullOrEmpty(AddressTextBox.Text))
+            if (string.IsNullOrEmpty(AddressTB.Text))
             {
-                AddressTextBox.ToolTip = "Адрес не может быть пустым!";
-                AddressTextBox.Background = Brushes.LightPink;
+                AddressTB.ToolTip = "Адрес не может быть пустым!";
+                AddressTB.Background = Brushes.LightPink;
                 isValid = false;
             }
             else
             {
-                AddressTextBox.ToolTip = null;
-                AddressTextBox.Background = Brushes.White;
+                AddressTB.ToolTip = null;
+                AddressTB.Background = Brushes.White;
             }
 
             // Если хотя бы одно поле невалидно
@@ -148,13 +153,20 @@ namespace UP02.Pages.Regist
 
             // Если все проверки пройдены
             MessageBox.Show("Регистрация успешно завершена!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-
-            // Здесь можно добавить логику сохранения данных
         }
 
-        private void ConfirmPasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        // Метод проверки email
+        private bool IsValidEmail(string email)
         {
-
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace UP02.Pages.Authoriz
     public partial class Authoriz : Page
     {
 
-        private readonly Frame _frame;
+        public readonly Frame _frame;
         public Authoriz(Frame frame)
         {
             InitializeComponent();

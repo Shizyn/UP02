@@ -45,5 +45,7 @@
 
         <!-- Кнопка регистрации -->
         <Button Content="Зарегистрироваться" Width="150" Height="40" Grid.Row="8" Margin="280,20,280,0" Click="RegisterBtn_Click" />
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Page>

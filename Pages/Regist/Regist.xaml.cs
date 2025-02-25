@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Media;
+using UP02.Pages.Authoriz;
 
 namespace UP02.Pages.Regist
 {
@@ -144,11 +145,10 @@ namespace UP02.Pages.Regist
                 AddressTB.ToolTip = null;
                 AddressTB.Background = Brushes.White;
             }
-            MessageBox.Show(er, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             //Если хотя бы одно поле невалидно
             if (!isValid)
             {
-                MessageBox.Show("Пожалуйста, исправьте ошибки в форме!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(er, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -190,6 +190,11 @@ namespace UP02.Pages.Regist
             {
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
+        }
+
+        private void GetBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Glav(_frame));
         }
     }
 }

@@ -28,13 +28,18 @@ namespace UP02.Pages.Authoriz
 
                 if (_frame != null)
                 {
-                    _frame.Navigate(new Pages.Main.Main()); 
+                    _frame.Navigate(new Main.Main()); 
                 }
             }
             else
             {
                 MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void GetBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Glav(_frame));
         }
     }
 }

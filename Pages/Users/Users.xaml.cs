@@ -24,5 +24,15 @@ namespace UP02.Pages.Users
         {
             InitializeComponent();
         }
+
+        private void EditRecord(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteRecord(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

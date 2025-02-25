@@ -7,6 +7,11 @@
       mc:Ignorable="d" d:DesignHeight="500" d:DesignWidth="800" Title="Authoriz" >
     <Grid Background="White" Margin="5">
         <Grid Margin="5" Background="#9EA1A2">
+            <TextBlock Text="Авторизация" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Margin="0,20,0,20">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
 
 
             <TextBlock Foreground="White" Text="Логин:" FontSize="16" VerticalAlignment="Center" Margin="0,90,460,165" HorizontalAlignment="Center" >

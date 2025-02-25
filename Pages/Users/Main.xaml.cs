@@ -20,9 +20,12 @@ namespace UP02.Pages.Users
     /// </summary>
     public partial class Main : Page
     {
+        public IEnumerable<Classes.Users> AllUsers = Classes.Users.AllUsers();
         public Main()
         {
             InitializeComponent();
+            foreach (var Users in AllUsers)
+                UsersParent.Children.Add(new Users());
         }
     }
 }

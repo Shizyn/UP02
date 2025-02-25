@@ -24,5 +24,10 @@ namespace UP02.Pages.Users
         {
             InitializeComponent();
         }
+
+        private void AddUsersBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

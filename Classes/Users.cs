@@ -15,22 +15,20 @@ namespace UP02.Classes
         public string Fio { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
-
-        public Users(string login, string password)
+        public static IEnumerable<Users> AllUsers()
         {
             List<Users> allUsers = new List<Users>();
-            DataTable requestStates = DBConnection.Connection("SELECT * FROM [dbo].[Users]");
-            Login = login;
-            Password = password;
+            //DataTable requestUsers = DBConnection.Connection("SELECT * FROM Users");
+           
             
-            foreach (DataRow state in requestStates.Rows)
-                allUsers.Add(new Users(login, password)
-                {
-                    Id = Convert.ToInt32(state[0]),
-                    Login = state[1].ToString(),
-                    Password = state[2].ToString(),
-                });
-            return;
+            //foreach (DataRow users in requestUsers.Rows)
+            //    allUsers.Add(new Users()
+            //    {
+            //        Id = Convert.ToInt32(users[0]),
+            //        Login = users[1].ToString(),
+            //        Password = users[2].ToString(),
+            //    });
+            return allUsers;
         }
         private bool IsValidEmail(string email)
         {

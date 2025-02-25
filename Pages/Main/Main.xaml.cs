@@ -1,31 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using UP02.Pages.Authoriz;
 
 namespace UP02.Pages.Main
 {
-    /// <summary>
-    /// Логика взаимодействия для Main.xaml
-    /// </summary>
     public partial class Main : Page
     {
+        public readonly Frame _frame;
 
         public Pages.Users.Main mainUsers = new Pages.Users.Main();
-        public Main()
+        public Main(Frame frame)
         {
             InitializeComponent();
             OpenPage(mainUsers);
+            _frame = frame;
         }
         public void OpenPage(Page pages)
         {
@@ -93,5 +81,9 @@ namespace UP02.Pages.Main
         private void OpenModelsAdd(object sender, RoutedEventArgs e) =>
             OpenPage(new Pages.Models.Add());
 
+        private void GoOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Glav(_frame));
+        }
     }
 }

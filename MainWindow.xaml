@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:local="clr-namespace:UP02" 
-        mc:Ignorable="d" Title="MainWindow" Height="800" Width="1315" MinHeight="800" MinWidth="1315">
+        mc:Ignorable="d" Title="MainWindow" Height="800" Width="1315" MinHeight="800" MinWidth="1325">
     <Grid>
         <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
     </Grid>

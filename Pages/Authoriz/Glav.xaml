@@ -18,8 +18,8 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Добро пожаловать!" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Foreground="#9EA1A2" Margin="284,60,275,118" Width="253" Height="32" />
-        <Button Content="Войти" Width="284" FontSize="16" Background="#0060AC" Foreground="White" Cursor="Hand" Click="NavigateToLoginPage" HorizontalAlignment="Center" Margin="172,73,846,149" Grid.Row="3" />
-        <Button Content="Зарегистрироваться" Width="296" FontSize="16" Background="#E41613" Foreground="White" Cursor="Hand" Click="NavigateToRegisterPage" HorizontalAlignment="Center" Margin="896,73,118,149" Grid.Row="3" />
+        <Button Content="Войти" Width="284" Height="100" FontSize="16" Background="#0060AC" Foreground="White" Cursor="Hand" Click="NavigateToLoginPage" HorizontalAlignment="Center" Margin="152,73,846,149" Grid.Row="3" />
+        <Button Content="Зарегистрироваться" Width="296" Height="100" FontSize="16" Background="#E41613" Foreground="White" Cursor="Hand" Click="NavigateToRegisterPage" HorizontalAlignment="Center" Margin="896,73,118,149" Grid.Row="3" />
         <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="10,25,0,100" Grid.RowSpan="4" />
     </Grid>
 </Page>

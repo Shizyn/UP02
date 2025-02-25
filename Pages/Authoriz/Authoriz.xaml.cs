@@ -28,7 +28,7 @@ namespace UP02.Pages.Authoriz
 
                 if (_frame != null)
                 {
-                    _frame.Navigate(new Main.Main()); 
+                    _frame.Navigate(new Main.Main(_frame)); 
                 }
             }
             else

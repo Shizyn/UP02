@@ -157,7 +157,7 @@ namespace UP02.Pages.Regist
             if (_frame != null)
             {
                 MessageBox.Show("Вы успешно вошли!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                _frame.Navigate(new Pages.Main.Main());
+                _frame.Navigate(new Pages.Main.Main(_frame));
             }
             else
             {

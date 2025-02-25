@@ -3,56 +3,68 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:UP02.Pages.Main" 
-      mc:Ignorable="d" d:DesignHeight="700" Width="1310" Title="Main" >
+      xmlns:local="clr-namespace:UP02.Pages.Main"
+      mc:Ignorable="d" d:DesignHeight="700" d:DesignWidth="1325" Title="Main" >
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Image/tebletki.jpg" Stretch="UniformToFill" />
+            <ImageBrush ImageSource="/Image/tebletki.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
+            
             <ColumnDefinition />
             <ColumnDefinition Width="0*" />
         </Grid.ColumnDefinitions>
-        <Menu Background="#9EA1A2" Height="50" VerticalAlignment="Top" x:Name="mainMenu" FontSize="15" FontFamily="Verdana">
-            <MenuItem Header="Пользователи" Height="50" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Cпиcoк" Click="OpenUsersList"></MenuItem>
-                <MenuItem Header="Добавить" Click="OpenUsersAdd"></MenuItem>
-                <!--<MenuItem Header="Экспортировать" Click="ExportRecord"></MenuItem>-->
-            </MenuItem>
-            <MenuItem Header="Оборудование" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Cпиcoк" Click="OpenEquipmentList"></MenuItem>
-                <MenuItem Header="Добавить" Click="OpenEquipmentAdd"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Аудитории" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Спucoк" Click="OpenRoomList"></MenuItem>
-                <MenuItem Header="Добавить" Click="OpenRoomAdd"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Инвентаризация" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Cпиcoк" Click="OpenInventoryList" />
-                <MenuItem Header="Добавить" Click="OpenInventoryAdd" />
-            </MenuItem>
-            <MenuItem Header="Сетевые настройки" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Cпиcoк" Click="OpenNetworkSettingsList" />
-                <MenuItem Header="Добавить" Click="OpenNetworkSettingsAdd" />
-            </MenuItem>
-            <MenuItem Header="Материалы" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Cпиcoк" Click="OpenConsumablesList" />
-                <MenuItem Header="Добавить" Click="OpenConsumablesAdd" />
-            </MenuItem>
-            <MenuItem Header="Характеристики расходного материала" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Cпиcoк" Click="OpenTypeConsumablesList" />
-                <MenuItem Header="Добавить" Click="OpenTypeConsumablesAdd" />
-            </MenuItem>
-            <MenuItem Header="ПО" BorderBrush="#E41613" BorderThickness="2">
-                <MenuItem Header="Cпиcoк" Click="OpenSoftwareList" />
-                <MenuItem Header="Добавить" Click="OpenSoftwareAdd" />
-            </MenuItem>
-            <MenuItem Header="Модель оборудования" BorderBrush="#E41613" BorderThickness="1,2">
-                <MenuItem Header="Cпиcoк" Click="OpenModelsList" />
-                <MenuItem Header="Добавить" Click="OpenModelsAdd" />
-            </MenuItem>
-        </Menu>
-        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,50,0,0" />
+        <DockPanel LastChildFill="True">
+            <Menu Background="Gray" Height="50" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="15" FontFamily="Verdana" DockPanel.Dock="Top">
+                <!-- Стиль для равномерного распределения MenuItem -->
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" Columns="{Binding RelativeSource={RelativeSource AncestorType=Menu}, Path=Items.Count}" />
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+
+                <!-- Пункты меню -->
+                <MenuItem FontSize="14" Header="Пользователи" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenUsersList" />
+                    <MenuItem Header="Добавить" Click="OpenUsersAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="Оборудование" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenEquipmentList" />
+                    <MenuItem Header="Добавить" Click="OpenEquipmentAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="Аудитории" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Спucoк" Click="OpenRoomList" />
+                    <MenuItem Header="Добавить" Click="OpenRoomAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="Инвентаризация" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenInventoryList" />
+                    <MenuItem Header="Добавить" Click="OpenInventoryAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="Сетевые настройки" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenNetworkSettingsList" />
+                    <MenuItem Header="Добавить" Click="OpenNetworkSettingsAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="Материалы" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenConsumablesList" />
+                    <MenuItem Header="Добавить" Click="OpenConsumablesAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="Характер. материала" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenTypeConsumablesList" />
+                    <MenuItem Header="Добавить" Click="OpenTypeConsumablesAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="ПО" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenSoftwareList" />
+                    <MenuItem Header="Добавить" Click="OpenSoftwareAdd" />
+                </MenuItem>
+                <MenuItem FontSize="14" Header="Модель оборудования" BorderBrush="#E41613" BorderThickness="1,2" HorizontalContentAlignment="Stretch">
+                    <MenuItem Header="Cпиcoк" Click="OpenModelsList" />
+                    <MenuItem Header="Добавить" Click="OpenModelsAdd" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Button  BorderBrush="Gray" BorderThickness="2" Background="#0060AC" Foreground="White" Content="Выйти" Width="150" Height="40" FontSize="14" Margin="0,0,20,20" Click="GoOutButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+        <Frame x:Name="frame" NavigationUIVisibility="Hidden" Margin="0,50,0,0"/>
     </Grid>
 </Page>
+<!--<MenuItem Header="Экспортировать" Click="ExportRecord"></MenuItem>-->

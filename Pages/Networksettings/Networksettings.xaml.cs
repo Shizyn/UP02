@@ -15,14 +15,21 @@ using System.Windows.Shapes;
 
 namespace UP02.Pages.Networksettings
 {
-    /// <summary>
-    /// Логика взаимодействия для Networksettings.xaml
-    /// </summary>
     public partial class Networksettings : UserControl
     {
         public Networksettings()
         {
             InitializeComponent();
+        }
+
+        private void EditNetwork(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteNetwork(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

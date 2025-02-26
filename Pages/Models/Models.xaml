@@ -5,8 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UP02.Pages.Models"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+                      d:DesignHeight="270" d:DesignWidth="800">
     <Grid>
-            
+        <Border BorderBrush="Gray" BorderThickness="1" Background="Gray" CornerRadius="20" VerticalAlignment="Top" Height="270">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Black" Direction="315" ShadowDepth="5" Opacity="0.5"/>
+            </Border.Effect>
+            <Grid Margin="15">
+                <Image Width="68" Height="68" VerticalAlignment="Top" HorizontalAlignment="Left" Source="/Image/models.png" Stretch="UniformToFill"/>
+                <Button Content="Изменить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="68" Height="25" BorderBrush="#0060AC" Background="#0060AC" Foreground="White" FontWeight="Bold" Click="EditModel" Margin="0,73,0,0">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10" Color="Black" Direction="315" ShadowDepth="2" Opacity="0.5"/>
+                    </Button.Effect>
+                </Button>
+                <Button Content="Удалить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="68" Height="25" BorderBrush="#E41613" Background="#E41613" Foreground="White" FontWeight="Bold" Margin="0,103,0,0" Click="DeleteModel">
+                    <Button.Effect>
+                        <DropShadowEffect BlurRadius="10" Color="Black" Direction="315" ShadowDepth="2" Opacity="0.5"/>
+                    </Button.Effect>
+                </Button>
+                <Grid Margin="73,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Название:" Margin="0,0,10,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="nameTB" IsEnabled="False" Margin="0,26,10,0" Height="25" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Padding="10,0">
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="10" Color="Black" Direction="315" ShadowDepth="2" Opacity="0.5"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                    <Label Content="Тип:" Margin="0,51,10,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="type_idTB" IsEnabled="False" Margin="0,78,10,0" Height="25" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Padding="10, 0">
+                        <TextBox.Effect>
+                            <DropShadowEffect BlurRadius="10" Color="Black" Direction="315" ShadowDepth="2" Opacity="0.5"/>
+                        </TextBox.Effect>
+                    </TextBox>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace UP02.Pages.Users
 {
-    /// <summary>
-    /// Логика взаимодействия для Users.xaml
-    /// </summary>
     public partial class Users : UserControl
     {
         public Users()
@@ -25,7 +22,7 @@ namespace UP02.Pages.Users
             InitializeComponent();
         }
 
-        private void EditRecord(object sender, RoutedEventArgs e)
+        private void EditUser(object sender, RoutedEventArgs e)
         {
 
         }

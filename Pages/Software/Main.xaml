@@ -10,11 +10,13 @@
 
     <Grid>
         <Grid Background="#9EA1A2">
-            <ScrollViewer Margin="10,10,10,10">
-                <StackPanel x:Name="manufacterParent" Margin="10">
+            <ScrollViewer Margin="10,10,10,50">
+                <StackPanel x:Name="softwareParent" Margin="5" Background="Gray">
 
                 </StackPanel>
             </ScrollViewer>
+            <Button Content="Назад" Width="100" Height="30" FontSize="14" Background="#0060AC" Foreground="White" Click="GetBackButton_Click" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" />
+            <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Grid>
 </Page>

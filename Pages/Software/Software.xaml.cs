@@ -15,14 +15,21 @@ using System.Windows.Shapes;
 
 namespace UP02.Pages.Software
 {
-    /// <summary>
-    /// Логика взаимодействия для Software.xaml
-    /// </summary>
     public partial class Software : UserControl
     {
         public Software()
         {
             InitializeComponent();
+        }
+
+        private void EditSoftware(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteSoftware(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

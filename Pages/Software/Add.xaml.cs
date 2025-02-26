@@ -20,9 +20,26 @@ namespace UP02.Pages.Software
     /// </summary>
     public partial class Add : Page
     {
-        public Add()
+        public readonly Frame _frame;
+        public Add(Frame frame)
         {
             InitializeComponent();
+            _frame = frame;
+        }
+
+        private void AddUsersBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void GetBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Pages.Main.Main(_frame));
+        }
+
+        private void AddSoftwaresBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

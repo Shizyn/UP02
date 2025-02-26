@@ -15,14 +15,18 @@ using System.Windows.Shapes;
 
 namespace UP02.Pages.Software
 {
-    /// <summary>
-    /// Логика взаимодействия для Main.xaml
-    /// </summary>
     public partial class Main : Page
     {
-        public Main()
+        public readonly Frame _frame;
+        public Main(Frame frame)
         {
             InitializeComponent();
+            _frame = frame;
+        }
+
+        private void GetBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Pages.Main.Main(_frame));
         }
     }
 }

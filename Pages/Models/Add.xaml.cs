@@ -15,14 +15,24 @@ using System.Windows.Shapes;
 
 namespace UP02.Pages.Models
 {
-    /// <summary>
-    /// Логика взаимодействия для Add.xaml
-    /// </summary>
     public partial class Add : Page
     {
-        public Add()
+        public readonly Frame _frame;
+        public Add(Frame frame)
         {
             InitializeComponent();
+            _frame = frame;
+            shadow.Color = Color.FromArgb(255, 0, 96, 172);
+        }
+
+        private void AddSoftwaresBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GetBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Pages.Main.Main(_frame));
         }
     }
 }

@@ -5,10 +5,81 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:UP02.Pages.Equipment"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Add">
+        d:DesignHeight="450" d:DesignWidth="1000"
+        Title="Add">
 
-    <Grid>
-        
+
+
+    <Grid Background="White" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Background="#9EA1A2" Grid.ColumnSpan="2">
+            <TextBlock Text="Добавление оборудования" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Margin="0,20,0,20">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <Button Content="Назад" Width="100" Height="30" FontSize="14" Background="#0060AC" Foreground="White" Click="GetBackButton_Click" HorizontalAlignment="Right" Margin="0,27,29,0" VerticalAlignment="Top" />
+            <TextBlock Grid.Column="1" Foreground="White" Text="Название:" FontSize="16" VerticalAlignment="Center" Margin="0,90,490,305" HorizontalAlignment="Center" >
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox BorderBrush="Gray" BorderThickness="2" Name="LoginTB" Width="400" Height="30" Margin="0,90,0,305" VerticalAlignment="Center" />
+
+            <!-- Пароль -->
+            <TextBlock  Foreground="White" Text="Пароль:" FontSize="16" VerticalAlignment="Center" Margin="0,130,470,265"  HorizontalAlignment="Center" >
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <PasswordBox BorderBrush="Gray" BorderThickness="2" Name="PassPB" Width="400" Height="30" Margin="0,130,0,265" VerticalAlignment="Center" />
+
+            <!-- Роль -->
+            <TextBlock Foreground="White" Text="Роль:" FontSize="16" VerticalAlignment="Center" Margin="0,160,450,215"  HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox BorderBrush="Gray" BorderThickness="2" Name="PolePB" Width="400" Height="30" Margin="0,160,0,215" VerticalAlignment="Center" />
+
+            <!-- Email -->
+            <TextBlock Foreground="White" Text="Email:" FontSize="16" VerticalAlignment="Center" Margin="0,190,450,165" HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox BorderBrush="Gray" BorderThickness="2" Name="EmailTB" Width="400" Height="30" Margin="0,190,0,165" VerticalAlignment="Center" />
+
+            <!-- ФИО -->
+            <TextBlock Foreground="White" Text="ФИО:" VerticalAlignment="Center" FontSize="16" Margin="0,220,450,115" HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox BorderBrush="Gray" BorderThickness="2" Name="FioTB" Width="400" Height="30" Margin="0,220,0,115" VerticalAlignment="Center" />
+
+            <!-- Телефон -->
+            <TextBlock Foreground="White" Text="Телефон:" FontSize="16" Margin="0,250,480,65" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox BorderBrush="Gray" BorderThickness="2" Name="PhoneTB" Width="400" Height="30" Margin="0,250,0,65" VerticalAlignment="Center"/>
+
+            <!-- Адрес -->
+            <TextBlock Foreground="White" Text="Адрес:" FontSize="16" VerticalAlignment="Center" Margin="0,280,460,15" HorizontalAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox BorderBrush="Gray" BorderThickness="2" Name="AddressTB" Width="400" Height="30" VerticalAlignment="Center" Margin="0,280,0,15" />
+
+            <!-- Кнопка регистрации -->
+            <Button  BorderBrush="Gray" BorderThickness="2" Background="#0060AC" Foreground="White" Content="Добавить" Width="150" Height="40" FontSize="14" Margin="315,0,315,20" Click="AddEquipmentBtn_Click" VerticalAlignment="Bottom" />
+            <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
 </Page>

@@ -15,14 +15,21 @@ using System.Windows.Shapes;
 
 namespace UP02.Pages.Models
 {
-    /// <summary>
-    /// Логика взаимодействия для Models.xaml
-    /// </summary>
     public partial class Models : UserControl
     {
         public Models()
         {
             InitializeComponent();
+        }
+
+        private void EditModel(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteModel(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

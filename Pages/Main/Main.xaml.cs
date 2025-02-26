@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using UP02.Pages.Authoriz;
+using ZstdSharp.Unsafe;
 
 namespace UP02.Pages.Main
 {
@@ -8,11 +9,10 @@ namespace UP02.Pages.Main
     {
         public readonly Frame _frame;
 
-        public Pages.Users.Main mainUsers = new Pages.Users.Main();
+
         public Main(Frame frame)
         {
             InitializeComponent();
-            OpenPage(mainUsers);
             _frame = frame;
         }
         public void OpenPage(Page pages)
@@ -20,10 +20,10 @@ namespace UP02.Pages.Main
             frame.Navigate(pages);
         }
         private void OpenUsersList(object sender, RoutedEventArgs e) =>
-                OpenPage(new Pages.Users.Main());
+                OpenPage(new Pages.Users.Main(_frame));
 
         private void OpenUsersAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Users.Add());
+            OpenPage(new Pages.Users.Add(_frame));
 
         // Оборудование
         private void OpenEquipmentList(object sender, RoutedEventArgs e) =>
@@ -34,24 +34,24 @@ namespace UP02.Pages.Main
 
         // Аудитории
         private void OpenRoomList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Room.Main());
+            OpenPage(new Pages.Room.Main(_frame));
 
         private void OpenRoomAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Room.Add());
+            OpenPage(new Pages.Room.Add(_frame));
 
         // Инвентаризация
         private void OpenInventoryList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Inventory.Main());
+            OpenPage(new Pages.Inventory.Main(_frame));
 
         private void OpenInventoryAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Inventory.Add());
+            OpenPage(new Pages.Inventory.Add(_frame));
 
         // Сетевые настройки
         private void OpenNetworkSettingsList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Networksettings.Main());
+            OpenPage(new Pages.Networksettings.Main(_frame));
 
         private void OpenNetworkSettingsAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Networksettings.Add());
+            OpenPage(new Pages.Networksettings.Add(_frame));
 
         // Материалы
         private void OpenConsumablesList(object sender, RoutedEventArgs e) =>
@@ -69,17 +69,17 @@ namespace UP02.Pages.Main
 
         // Программное обеспечение
         private void OpenSoftwareList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Software.Main());
+            OpenPage(new Pages.Software.Main(_frame));
 
         private void OpenSoftwareAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Software.Add());
+            OpenPage(new Pages.Software.Add(_frame));
 
         // Модель оборудования
         private void OpenModelsList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Models.Main());
+            OpenPage(new Pages.Models.Main(_frame));
 
         private void OpenModelsAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Models.Add());
+            OpenPage(new Pages.Models.Add(_frame));
 
         private void GoOutButton_Click(object sender, RoutedEventArgs e)
         {

@@ -12,7 +12,7 @@
         <Grid Background="#9EA1A2">
             <ScrollViewer Margin="10,10,10,10">
                 <StackPanel x:Name="manufacterParent" Margin="10">
-
+                    
                 </StackPanel>
             </ScrollViewer>
         </Grid>

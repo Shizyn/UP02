@@ -12,17 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZstdSharp.Unsafe;
 
 namespace UP02.Pages.Models
 {
-    /// <summary>
-    /// Логика взаимодействия для Main.xaml
-    /// </summary>
     public partial class Main : Page
     {
-        public Main()
+        public readonly Frame _frame;
+        public Main(Frame frame)
         {
             InitializeComponent();
+            _frame = frame;
+        }
+
+        private void GetBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Pages.Main.Main(_frame));
         }
     }
 }

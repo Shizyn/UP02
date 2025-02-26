@@ -24,5 +24,15 @@ namespace UP02.Pages.Inventory
         {
             InitializeComponent();
         }
+
+        private void EditInventoryCheck(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteInventoryCheck(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

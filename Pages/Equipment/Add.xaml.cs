@@ -15,14 +15,22 @@ using System.Windows.Shapes;
 
 namespace UP02.Pages.Equipment
 {
-    /// <summary>
-    /// Логика взаимодействия для Add.xaml
-    /// </summary>
     public partial class Add : Page
     {
-        public Add()
+        public readonly Frame _frame;
+        public Add(Frame frame)
         {
             InitializeComponent();
+            _frame = frame;
         }
+        private void GetBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Pages.Main.Main(_frame));
+        }
+
+        private void AddEquipmentBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }        
     }
 }

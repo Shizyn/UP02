@@ -30,7 +30,7 @@ namespace UP02.Pages.Main
             OpenPage(new Pages.Equipment.Main());
 
         private void OpenEquipmentAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Equipment.Add());
+            OpenPage(new Pages.Equipment.Add(_frame));
 
         // Аудитории
         private void OpenRoomList(object sender, RoutedEventArgs e) =>

@@ -5,16 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:UP02.Pages.Consumables"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Main">
-
-    <Grid>
-        <Grid Background="#9EA1A2">
-            <ScrollViewer Margin="10,10,10,10">
-                <StackPanel x:Name="manufacterParent" Margin="10">
+        d:DesignHeight="450" d:DesignWidth="800"
+  Title="Main">
+    <Grid Background="#9EA1A2">
+        <Grid>
+            <ScrollViewer Margin="10,10,10,50">
+                <StackPanel x:Name="ConsumablesParent" Margin="5" Background="Gray">
 
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+        <Button Content="Назад" Width="100" Height="30" FontSize="14" Background="#0060AC" Foreground="White" Click="GetBackButton_Click" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" />
     </Grid>
 </Page>

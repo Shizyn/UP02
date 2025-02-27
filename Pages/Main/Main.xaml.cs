@@ -27,7 +27,7 @@ namespace UP02.Pages.Main
 
         // Оборудование
         private void OpenEquipmentList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Equipment.Main());
+            OpenPage(new Pages.Equipment.Main(_frame));
 
         private void OpenEquipmentAdd(object sender, RoutedEventArgs e) =>
             OpenPage(new Pages.Equipment.Add(_frame));
@@ -55,17 +55,17 @@ namespace UP02.Pages.Main
 
         // Материалы
         private void OpenConsumablesList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Consumables.Main());
+            OpenPage(new Pages.Consumables.Main(_frame));
 
         private void OpenConsumablesAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Consumables.Add());
+            OpenPage(new Pages.Consumables.Add(_frame));
 
         // Характеристики расходного материала
         private void OpenTypeConsumablesList(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.ConsumableCharacteristics.Main());
+            OpenPage(new Pages.ConsumableCharacteristics.Main(_frame));
 
         private void OpenTypeConsumablesAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.ConsumableCharacteristics.Add());
+            OpenPage(new Pages.ConsumableCharacteristics.Add(_frame));
 
         // Программное обеспечение
         private void OpenSoftwareList(object sender, RoutedEventArgs e) =>

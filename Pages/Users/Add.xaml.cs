@@ -43,7 +43,7 @@ namespace UP02.Pages.Users
                 MessageBox.Show($"Пользователь добавлен");
             }
             if (this.users != null)
-            {
+            { 
                 Classes.Users newUsers = new Classes.Users(
                     users.Id,
                     LoginTB.Text,

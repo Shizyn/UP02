@@ -16,9 +16,6 @@ using UP02.Pages;
 
 namespace UP02
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 

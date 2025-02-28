@@ -1,13 +1,13 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySqlConnector;
 
 namespace UP02.Classes.Connection
 {
     public class Connect
     {
-        public static string server = "student.permaviat.ru";
-        public static string login = "ISP_21_4_9";
-        public static string password = "bvqsDO327#";
-        public static string DataBase = "ISP_21_4_9";
+        public static string server = "127.0.0.1";
+        public static string login = "root";
+        public static string password = "";
+        public static string DataBase = "up02";
         public static string Port = "3306";
         public static string con = $"server={server};uid={login};pwd={password};database={DataBase};port={Port};";
         public static MySqlDataReader Connection(string query)

@@ -6,14 +6,16 @@ namespace UP02.Pages.Users
 {
     public partial class Main : Page
     {
-        public readonly System.Windows.Controls.Frame _frame;
-        public IEnumerable<Classes.Users> AllUsers = Classes.Users.AllUsers();
-        public Main(System.Windows.Controls.Frame frame)
+        public readonly Frame _frame;
+        public List<Classes.Users> AllUsers = Classes.Users.Select();
+        public Main(Frame frame)
         {
             InitializeComponent();
-            foreach (var Users in AllUsers)
-                usersParent.Children.Add(new Users());
             _frame = frame;
+            foreach (Classes.Users users in AllUsers)
+            {
+                usersParent.Children.Add(new Users(_frame, users));
+            }            
         }
 
         private void GetBackButton_Click(object sender, RoutedEventArgs e)

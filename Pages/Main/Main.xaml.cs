@@ -7,6 +7,7 @@ namespace UP02.Pages.Main
 {
     public partial class Main : Page
     {
+        Classes.Users users;
         public readonly Frame _frame;
 
 
@@ -23,7 +24,7 @@ namespace UP02.Pages.Main
                 OpenPage(new Pages.Users.Main(_frame));
 
         private void OpenUsersAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Users.Add(_frame));
+            OpenPage(new Pages.Users.Add(_frame, users));
 
         // Оборудование
         private void OpenEquipmentList(object sender, RoutedEventArgs e) =>

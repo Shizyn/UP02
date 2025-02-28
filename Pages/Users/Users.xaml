@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:UP02.Pages.Users"
              mc:Ignorable="d" >
     <Grid Margin="15">
-        <Border BorderBrush="#9EA1A2" BorderThickness="1" Background="#9EA1A2" CornerRadius="20" VerticalAlignment="Top" Height="270">
+        <Border BorderBrush="Gray" BorderThickness="1" Background="#9EA1A2" CornerRadius="20" VerticalAlignment="Top" Height="270">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" Color="Black" Direction="315" ShadowDepth="5" Opacity="0.5"/>
             </Border.Effect>

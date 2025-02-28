@@ -8,6 +8,7 @@ namespace UP02.Pages.Main
     public partial class Main : Page
     {
         Classes.Users users;
+        Classes.Room rooms;
         public readonly Frame _frame;
 
 
@@ -38,7 +39,7 @@ namespace UP02.Pages.Main
             OpenPage(new Pages.Room.Main(_frame));
 
         private void OpenRoomAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Room.Add(_frame));
+            OpenPage(new Pages.Room.Add(_frame, rooms));
 
         // Инвентаризация
         private void OpenInventoryList(object sender, RoutedEventArgs e) =>

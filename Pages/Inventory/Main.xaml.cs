@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP02.Classes;
 
 namespace UP02.Pages.Inventory
 {
     public partial class Main : Page
     {
+        public List<Inventorychecks> AllInventorychecks = Inventorychecks.Select();
         public readonly Frame _frame;
         public Main(Frame frame)
         {
             InitializeComponent();
             _frame = frame;
+            foreach (Inventorychecks inventorychecks in AllInventorychecks)
+            {
+                inventoryParent.Children.Add(new Inventory(_frame, inventorychecks));
+            }
         }
 
         private void GetBackButton_Click(object sender, RoutedEventArgs e)

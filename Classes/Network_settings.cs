@@ -12,5 +12,6 @@ namespace UP02.Classes
         public string Subnet_mask { get; set; }
         public string Gateway { get; set; }
         public string Dns_servers { get; set; }
+        public Network_settings(int Id, int Equipment_id) { }
     }
 }

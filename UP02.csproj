@@ -135,6 +135,7 @@
     <Compile Include="Classes\Inventorychecks.cs" />
     <Compile Include="Classes\Inventoryequipment.cs" />
     <Compile Include="Classes\Models.cs" />
+    <Compile Include="Classes\Models_types.cs" />
     <Compile Include="Classes\Network_settings.cs" />
     <Compile Include="Classes\Room.cs" />
     <Compile Include="Classes\Software.cs" />

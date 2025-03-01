@@ -9,6 +9,7 @@ namespace UP02.Pages.Main
     {
         Classes.Users users;
         Classes.Room rooms;
+        Classes.Software softwares;
         public readonly Frame _frame;
 
 
@@ -74,7 +75,7 @@ namespace UP02.Pages.Main
             OpenPage(new Pages.Software.Main(_frame));
 
         private void OpenSoftwareAdd(object sender, RoutedEventArgs e) =>
-            OpenPage(new Pages.Software.Add(_frame));
+            OpenPage(new Pages.Software.Add(_frame, softwares));
 
         // Модель оборудования
         private void OpenModelsList(object sender, RoutedEventArgs e) =>

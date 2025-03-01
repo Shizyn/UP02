@@ -1,35 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace UP02.Pages.Software
 {
-    /// <summary>
-    /// Логика взаимодействия для Add.xaml
-    /// </summary>
     public partial class Add : Page
     {
+        Classes.Software software;
         public readonly Frame _frame;
-        public Add(Frame frame)
+        public Add(Frame frame, Classes.Software software)
         {
             InitializeComponent();
             _frame = frame;
-        }
-
-        private void AddUsersBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
+            if (software != null)
+            {
+                this.software = software;
+                namePB.Text = software.Name;
+                developerTB.Text = software.Developer;
+                versionTB.Text = software.Version;
+                BthAdd.Content = $"Изменить";
+            }
         }
 
         private void GetBackButton_Click(object sender, RoutedEventArgs e)
@@ -39,7 +28,29 @@ namespace UP02.Pages.Software
 
         private void AddSoftwaresBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this.software == null)
+            {
+                Classes.Software newSoftware = new Classes.Software(
+                    0,
+                    namePB.Text,
+                    developerTB.Text,
+                    versionTB.Text
+                    );
+                newSoftware.Add();
+                MessageBox.Show($"Программна добавлена");
+            }
+            if (this.software != null)
+            {
+                Classes.Software newSoftware = new Classes.Software(
+                    software.Id,
+                    namePB.Text,
+                    developerTB.Text,
+                    versionTB.Text
+                    );
+                newSoftware.Update();
+                MessageBox.Show($"Программа изменёна");
+            }
+            _frame.Navigate(new Main(_frame));
         }
     }
 }

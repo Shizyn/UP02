@@ -17,11 +17,16 @@ namespace UP02.Pages.Software
 {
     public partial class Main : Page
     {
+        public List<Classes.Software> AllSoftwares = Classes.Software.Select();
         public readonly Frame _frame;
         public Main(Frame frame)
         {
             InitializeComponent();
             _frame = frame;
+            foreach (Classes.Software softwares in AllSoftwares)
+            {
+                softwareParent.Children.Add(new Software(_frame, softwares));
+            }
         }
 
         private void GetBackButton_Click(object sender, RoutedEventArgs e)

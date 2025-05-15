@@ -127,9 +127,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Connection\Connect.cs" />
-    <Compile Include="Classes\Consumablecharacteristics.cs" />
+    <Compile Include="Classes\Consumable_characteristic.cs" />
     <Compile Include="Classes\Consumables.cs" />
-    <Compile Include="Classes\Consumabletypecharacteristics.cs" />
     <Compile Include="Classes\CSV\Excel_CSV.cs" />
     <Compile Include="Classes\Equipment.cs" />
     <Compile Include="Classes\Inventorychecks.cs" />
@@ -416,6 +415,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\consumableCharacteristics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\i.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

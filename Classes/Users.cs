@@ -90,17 +90,5 @@ namespace UP02.Classes
             Query(SQL, connection);
             CloseConnection(connection);
         }
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

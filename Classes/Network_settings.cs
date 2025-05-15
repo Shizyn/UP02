@@ -68,7 +68,7 @@ namespace UP02.Classes
         }
         public void Update()
         {
-            string SQL = $"UPDATE `rooms` SET `equipment_id`='{this.Equipment_id}',`ip_address`='{this.Ip_address}',`subnet_mask`='{this.Subnet_mask}',`gateway`='{this.Gateway}',`dns_servers`='{this.Dns_servers}' WHERE `id`='{this.Id}'";
+            string SQL = $"UPDATE `network_settings` SET `equipment_id`='{this.Equipment_id}',`ip_address`='{this.Ip_address}',`subnet_mask`='{this.Subnet_mask}',`gateway`='{this.Gateway}',`dns_servers`='{this.Dns_servers}' WHERE `id`='{this.Id}'";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);

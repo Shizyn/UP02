@@ -1,20 +1,18 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace UP02.Classes
 {
-    public class Models
+    public class Consumable_characteristic
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Type_id { get; set; }
-        public Models(int Id, string Name, int Type_id)
+        public string Characteristic_name { get; set; }
+        public string Characteristic_value { get; set; }
+        public Consumable_characteristic(int Id, string Characteristic_name, string Characteristic_value) 
         {
             this.Id = Id;
-            this.Name = Name;
-            this.Type_id = Type_id;
+            this.Characteristic_name = Characteristic_name;
+            this.Characteristic_value = Characteristic_value;
         }
         public static void CloseConnection(MySqlConnection connection)
         {
@@ -32,34 +30,34 @@ namespace UP02.Classes
 
             return connection;
         }
-        public static List<Models> Select()
+        public static List<Consumable_characteristic> Select()
         {
-            List<Models> AllModels = new List<Models>();
-            string SQL = "SELECT * FROM `models`;";
+            List<Consumable_characteristic> AllConsumablecharacteristics = new List<Consumable_characteristic>();
+            string SQL = "SELECT * FROM `consumable_characteristics`;";
             MySqlConnection connection = OpenConnection();
             MySqlDataReader Data = Query(SQL, connection);
             while (Data.Read())
             {
-                AllModels.Add(new Models(
+                AllConsumablecharacteristics.Add(new Consumable_characteristic(
                     Data.GetInt32(0),
                     Data.GetString(1),
-                    Data.GetInt32(2)
+                    Data.GetString(2)
                     ));
             }
             CloseConnection(connection);
-            return AllModels;
+            return AllConsumablecharacteristics;
         }
         public void Add()
         {
-            string SQL = $"INSERT INTO `models`(`name`, `type_id`) " +
-                         $"VALUES ('{Name}','{Type_id}')";
+            string SQL = $"INSERT INTO `consumable_characteristics`(`characteristic_name`, `characteristic_value`) " +
+                         $"VALUES ('{Characteristic_name}','{Characteristic_value}')";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);
         }
         public void Update()
         {
-            string SQL = $"UPDATE `models` SET `name`='{Name}',`type_id`='{Type_id}'";
+            string SQL = $"UPDATE `consumable_characteristics` SET `characteristic_name`='{Characteristic_name}',`characteristic_value`='{Characteristic_value}' WHERE `id`='{this.Id}'";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);
@@ -67,7 +65,7 @@ namespace UP02.Classes
 
         public void Delete()
         {
-            string SQL = $"DELETE FROM `models` WHERE `id` = {Id}";
+            string SQL = $"DELETE FROM `consumable_characteristics` WHERE `id` = {this.Id}";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);

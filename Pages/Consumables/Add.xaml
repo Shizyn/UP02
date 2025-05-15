@@ -27,7 +27,6 @@
             </TextBlock>
             <TextBox BorderBrush="Gray" BorderThickness="2" Name="NameTB" Width="400" Height="30" Margin="0,90,0,305" VerticalAlignment="Center" />
 
-            <!-- Пароль -->
             <TextBlock  Foreground="White" Text="Описание:" FontSize="16" VerticalAlignment="Center" Margin="0,130,485,265"  HorizontalAlignment="Center" >
                 <TextBlock.Effect>
                     <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
@@ -35,15 +34,13 @@
             </TextBlock>
             <PasswordBox BorderBrush="Gray" BorderThickness="2" Name="DescriptionPB" Width="400" Height="30" Margin="0,130,0,265" VerticalAlignment="Center" />
 
-            <!-- Роль -->
             <TextBlock Foreground="White" Text="Дата поступления:" FontSize="16" VerticalAlignment="Center" Margin="0,160,540,215"  HorizontalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <TextBox BorderBrush="Gray" BorderThickness="2" Name="Arrival_DatePB" Width="400" Height="30" Margin="0,160,0,215" VerticalAlignment="Center" />
+            <DatePicker BorderBrush="Gray" BorderThickness="2" Name="Arrival_DatePB" Width="400" Height="30" Margin="0,160,0,215" VerticalAlignment="Center" />
 
-            <!-- Email -->
             <TextBlock Foreground="White" Text="Фотография:" FontSize="16" VerticalAlignment="Center" Margin="0,190,500,165" HorizontalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
@@ -51,7 +48,6 @@
             </TextBlock>
             <TextBox BorderBrush="Gray" BorderThickness="2" Name="ImageTB" Width="400" Height="30" Margin="0,190,0,165" VerticalAlignment="Center" />
 
-            <!-- ФИО -->
             <TextBlock Foreground="White" Text="ФИО:" VerticalAlignment="Center" FontSize="16" Margin="0,220,450,115" HorizontalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
@@ -59,7 +55,6 @@
             </TextBlock>
             <TextBox BorderBrush="Gray" BorderThickness="2" Name="FioTB" Width="400" Height="30" Margin="0,220,0,115" VerticalAlignment="Center" />
 
-            <!-- Телефон -->
             <TextBlock Foreground="White" Text="Количество:" FontSize="16" Margin="0,250,500,65" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock.Effect>
                     <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>

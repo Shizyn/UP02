@@ -13,8 +13,8 @@ namespace UP02.Classes
         public byte[] image { get; set; }
         public int count { get; set; }
         public int user_id { get; set; }
-        public int consumable_type_id { get; set; }
-        public Consumables(int id, string name, string description, DateTime arrival_date, byte[] image, int count, int user_id, int consumable_type_id) 
+        public int consumable_id { get; set; }
+        public Consumables(int id, string name, string description, DateTime arrival_date, byte[] image, int count, int user_id, int consumable_id) 
         { 
             this.id = id;
             this.name = name;
@@ -23,7 +23,7 @@ namespace UP02.Classes
             this.image = image;
             this.count = count;
             this.user_id = user_id;
-            this.consumable_type_id = consumable_type_id;
+            this.consumable_id = consumable_id;
         }
         public static void CloseConnection(MySqlConnection connection)
         {
@@ -65,8 +65,8 @@ namespace UP02.Classes
         }
         public void Add()
         {
-            string SQL = $"INSERT INTO `consumables`(`name`, `description`, `arrival_date`, `image`, `count`, `user_id`, `consumable_type_id`) " +
-                         $"VALUES ('{name}','{description}','{arrival_date.ToString("yyyy-MM-dd HH:mm:ss")}','{image}','{count}','{user_id}','{consumable_type_id}')";
+            string SQL = $"INSERT INTO `consumables`(`name`, `description`, `arrival_date`, `image`, `count`, `user_id`, `consumable_id`) " +
+                         $"VALUES ('{name}','{description}','{arrival_date.ToString("yyyy-MM-dd HH:mm:ss")}','{image}','{count}','{user_id}','{consumable_id}')";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);
@@ -74,7 +74,7 @@ namespace UP02.Classes
         public void Update()
         {
             string SQL = $"UPDATE `consumables` SET `name`='{name}',`description`='{description}',`arrival_date`='{arrival_date.ToString("yyyy-MM-dd HH:mm:ss")}',`image`='{image}'," +
-                $"`count`='{count}',`user_id`='{user_id}',`consumable_type_id`='{consumable_type_id}' WHERE `id`='{this.id}'";
+                $"`count`='{count}',`user_id`='{user_id}',`consumable_id`='{consumable_id}' WHERE `id`='{this.id}'";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);

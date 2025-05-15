@@ -51,6 +51,7 @@ namespace UP02.Pages.ConsumableCharacteristics
         private void GetBackButton_Click(object sender, RoutedEventArgs e)
         {
             _frame.Navigate(new Pages.Main.Main(_frame));
-        }        
+        }
+
     }
 }

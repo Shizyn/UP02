@@ -66,18 +66,46 @@ namespace UP02.Classes
         public void Add()
         {
             string SQL = $"INSERT INTO `consumables`(`name`, `description`, `arrival_date`, `image`, `count`, `user_id`, `consumable_id`) " +
-                         $"VALUES ('{name}','{description}','{arrival_date.ToString("yyyy-MM-dd HH:mm:ss")}','{image}','{count}','{user_id}','{consumable_id}')";
-            MySqlConnection connection = OpenConnection();
-            Query(SQL, connection);
-            CloseConnection(connection);
+                         $"VALUES (@name, @description, @arrival_date, @image, @count, @user_id, @consumable_id)";
+
+            using (MySqlConnection connection = OpenConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(SQL, connection))
+                {
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@arrival_date", arrival_date.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@image", image ?? (object)DBNull.Value); // правильно передаём byte[]
+                    cmd.Parameters.AddWithValue("@count", count);
+                    cmd.Parameters.AddWithValue("@user_id", user_id);
+                    cmd.Parameters.AddWithValue("@consumable_id", consumable_id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
         public void Update()
         {
-            string SQL = $"UPDATE `consumables` SET `name`='{name}',`description`='{description}',`arrival_date`='{arrival_date.ToString("yyyy-MM-dd HH:mm:ss")}',`image`='{image}'," +
-                $"`count`='{count}',`user_id`='{user_id}',`consumable_id`='{consumable_id}' WHERE `id`='{this.id}'";
-            MySqlConnection connection = OpenConnection();
-            Query(SQL, connection);
-            CloseConnection(connection);
+            string SQL = $"UPDATE `consumables` SET " +
+                         $"`name`=@name, `description`=@description, `arrival_date`=@arrival_date, `image`=@image, " +
+                         $"`count`=@count, `user_id`=@user_id, `consumable_id`=@consumable_id WHERE `id`=@id";
+
+            using (MySqlConnection connection = OpenConnection())
+            {
+                using (MySqlCommand cmd = new MySqlCommand(SQL, connection))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@arrival_date", arrival_date.ToString("yyyy-MM-dd HH:mm:ss"));
+                    cmd.Parameters.AddWithValue("@image", image ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@count", count);
+                    cmd.Parameters.AddWithValue("@user_id", user_id);
+                    cmd.Parameters.AddWithValue("@consumable_id", consumable_id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public void Delete()

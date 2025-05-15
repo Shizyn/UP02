@@ -8,7 +8,7 @@ namespace UP02.Classes
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public BadImageFormatException Photo { get; set; }
+        public byte[] Photo { get; set; }
         public int Inventory_number { get; set; }
         public int Room_id { get; set; }
         public int Model_id { get; set; }
@@ -19,6 +19,9 @@ namespace UP02.Classes
         public decimal Cost { get; set; }
         public string Comment { get; set; }
         public int Software_id { get; set; }
+        public Equipment(int Id, string Name)
+        {
 
+        }
     }
 }

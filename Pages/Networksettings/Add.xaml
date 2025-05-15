@@ -23,7 +23,7 @@
                     <DropShadowEffect Color="#E41613" Opacity="1" ShadowDepth="0"/>
                 </TextBlock.Effect>
             </TextBlock>
-            <PasswordBox BorderBrush="Gray" BorderThickness="2" Name="equipmentPB" Width="400" Height="30" Margin="0,130,0,265" VerticalAlignment="Center" />
+            <TextBox BorderBrush="Gray" BorderThickness="2" Name="equipmentPB" Width="400" Height="30" Margin="0,130,0,265" VerticalAlignment="Center" />
 
             <!-- Роль -->
             <TextBlock  Foreground="White" Text="IP-Адрес:" FontSize="16" VerticalAlignment="Center" Margin="0,130,480,185"  HorizontalAlignment="Center" >
@@ -58,7 +58,7 @@
             <TextBox BorderBrush="Gray" BorderThickness="2" Name="dns_serverTB" Width="400" Height="30" Margin="0,250,0,65" VerticalAlignment="Center"/>
 
             <!-- Кнопка регистрации -->
-            <Button  BorderBrush="Gray" BorderThickness="2" Background="#0060AC" Foreground="White" Content="Добавить" Width="150" Height="40" FontSize="14" Margin="315,0,315,20" Click="AddNetworkBtn_Click" VerticalAlignment="Bottom" />
+            <Button x:Name="BthAdd" BorderBrush="Gray" BorderThickness="2" Background="#0060AC" Foreground="White" Content="Добавить" Width="150" Height="40" FontSize="14" Margin="315,0,315,20" Click="AddNetworkBtn_Click" VerticalAlignment="Bottom" />
             <Frame x:Name="frame" NavigationUIVisibility="Hidden"/>
         </Grid>
     </Grid>

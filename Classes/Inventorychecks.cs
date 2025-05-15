@@ -65,7 +65,7 @@ namespace UP02.Classes
         }
         public void Update()
         {
-            string SQL = $"UPDATE `inventory_checks` SET `start_date`='{Start_date.ToString("yyyy-MM-dd HH:mm:ss")}',`end_date`='{End_date.ToString("yyyy-MM-dd HH:mm:ss")}',`name`='{Name}',`user_id`='{User_id}'";
+            string SQL = $"UPDATE `inventory_checks` SET `start_date`='{Start_date.ToString("yyyy-MM-dd HH:mm:ss")}',`end_date`='{End_date.ToString("yyyy-MM-dd HH:mm:ss")}',`name`='{Name}',`user_id`='{User_id} WHERE `id`='{this.Id}'";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);
@@ -77,18 +77,6 @@ namespace UP02.Classes
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);
-        }
-        private bool IsValidEmail(string email)
-        {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
-            }
-            catch
-            {
-                return false;
-            }
         }
     }
 }

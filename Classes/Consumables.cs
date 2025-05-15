@@ -74,7 +74,7 @@ namespace UP02.Classes
         public void Update()
         {
             string SQL = $"UPDATE `consumables` SET `name`='{name}',`description`='{description}',`arrival_date`='{arrival_date.ToString("yyyy-MM-dd HH:mm:ss")}',`image`='{image}'," +
-                $"`count`='{count}',`user_id`='{user_id}',`consumable_type_id`='{consumable_type_id}', `user_id`='{user_id}'";
+                $"`count`='{count}',`user_id`='{user_id}',`consumable_type_id`='{consumable_type_id}' WHERE `id`='{this.id}'";
             MySqlConnection connection = OpenConnection();
             Query(SQL, connection);
             CloseConnection(connection);

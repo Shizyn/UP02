@@ -5,6 +5,8 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Windows.Media;
 using UP02.Pages.Authoriz;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using MySql.Data.MySqlClient;
 
 namespace UP02.Pages.Regist
 {
@@ -21,147 +23,176 @@ namespace UP02.Pages.Regist
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             string er="";
+            string login = LoginTB.Text;
+            string password = PassPB.Password;
+            string fio = FioTB.Text;
+            string email = EmailTB.Text;
+            string phone = PhoneTB.Text;
+            string address = AddressTB.Text;
+            string role = "Пользователь";
 
             bool isValid = true;
+            string connectionString = "server=localhost;user=root;password=;database=yp02;";
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                // Проверка логина
+                if (string.IsNullOrEmpty(LoginTB.Text))
+                {
+                    er += "Логин не может быть пустым!\n";
+                    //MessageBox.Show("Логин не может быть пустым!\n", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    LoginTB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else
+                {
+                    LoginTB.ToolTip = null;
+                    LoginTB.Background = Brushes.White;
+                }
 
-            // Проверка логина
-            if (string.IsNullOrEmpty(LoginTB.Text))
-            {er += "Логин не может быть пустым!\n";
-                //MessageBox.Show("Логин не может быть пустым!\n", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                LoginTB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else
-            {
-                LoginTB.ToolTip = null;
-                LoginTB.Background = Brushes.White;
-            }
+                // Проверка пароля
+                if (PassPB.SecurePassword.Length == 0)
+                {
+                    er += "Пароль не может быть пустым!\n";
+                    //  MessageBox.Show("Пароль не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PassPB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else if (PassPB.SecurePassword.Length < 6)
+                {
+                    er += "Пароль должен содержать минимум 6 символов!\n";
+                    // MessageBox.Show("Пароль должен содержать минимум 6 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PassPB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else
+                {
+                    PassPB.ToolTip = null;
+                    PassPB.Background = Brushes.White;
+                }
 
-            // Проверка пароля
-            if (PassPB.SecurePassword.Length == 0)
-            {
-                er += "Пароль не может быть пустым!\n";
-              //  MessageBox.Show("Пароль не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                PassPB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else if (PassPB.SecurePassword.Length < 6)
-            {
-                er += "Пароль должен содержать минимум 6 символов!\n";
-               // MessageBox.Show("Пароль должен содержать минимум 6 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                PassPB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else
-            {
-                PassPB.ToolTip = null;
-                PassPB.Background = Brushes.White;
-            }
+                // Проверка подтверждения пароля
+                if (ConfirmPassPB.SecurePassword.Length == 0)
+                {
+                    er += "Подтверждение пароля не может быть пустым!\n";
+                    // MessageBox.Show("Подтверждение пароля не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ConfirmPassPB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else if (ConvertToString(PassPB.SecurePassword) != ConvertToString(ConfirmPassPB.SecurePassword))
+                {
+                    er += "Пароли не совпадают!\n";
+                    //MessageBox.Show("Пароли не совпадают!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ConfirmPassPB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else
+                {
+                    ConfirmPassPB.ToolTip = null;
+                    ConfirmPassPB.Background = Brushes.White;
+                }
 
-            // Проверка подтверждения пароля
-            if (ConfirmPassPB.SecurePassword.Length == 0)
-            {
-                er += "Подтверждение пароля не может быть пустым!\n";
-                // MessageBox.Show("Подтверждение пароля не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                ConfirmPassPB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else if (ConvertToString(PassPB.SecurePassword) != ConvertToString(ConfirmPassPB.SecurePassword))
-            {er += "Пароли не совпадают!\n";
-                //MessageBox.Show("Пароли не совпадают!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                ConfirmPassPB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else
-            {
-                ConfirmPassPB.ToolTip = null;
-                ConfirmPassPB.Background = Brushes.White;
-            }
+                // Проверка email
+                if (string.IsNullOrEmpty(EmailTB.Text))
+                {
+                    er += "Email не может быть пустым!\n";
+                    //MessageBox.Show("Email не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    EmailTB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else if (!IsValidEmail(EmailTB.Text))
+                {
+                    er += "Неверный формат email!\n";
+                    // MessageBox.Show("Неверный формат email!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    EmailTB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else
+                {
+                    EmailTB.ToolTip = null;
+                    EmailTB.Background = Brushes.White;
+                }
 
-            // Проверка email
-            if (string.IsNullOrEmpty(EmailTB.Text))
-            {
-                er += "Email не может быть пустым!\n";
-                //MessageBox.Show("Email не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                EmailTB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else if (!IsValidEmail(EmailTB.Text))
-            {er += "Неверный формат email!\n";    
-               // MessageBox.Show("Неверный формат email!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                EmailTB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else
-            {
-                EmailTB.ToolTip = null;
-                EmailTB.Background = Brushes.White;
-            }
+                // Проверка ФИО
+                if (string.IsNullOrEmpty(FioTB.Text))
+                {
+                    er += "ФИО не может быть пустым!\n";
+                    //MessageBox.Show("ФИО не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    FioTB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else
+                {
+                    FioTB.ToolTip = null;
+                    FioTB.Background = Brushes.White;
+                }
 
-            // Проверка ФИО
-            if (string.IsNullOrEmpty(FioTB.Text))
-            {
-                er += "ФИО не может быть пустым!\n";
-                //MessageBox.Show("ФИО не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                FioTB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else
-            {
-                FioTB.ToolTip = null;
-                FioTB.Background = Brushes.White;
-            }
+                // Проверка телефона
+                if (string.IsNullOrEmpty(PhoneTB.Text))
+                {
+                    er += "Телефон не может быть пустым!\n";
+                    // MessageBox.Show("Телефон не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PhoneTB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else if (!System.Text.RegularExpressions.Regex.IsMatch(PhoneTB.Text, @"^\+?\d{10,15}$"))
+                {
+                    er += "Неверный формат телефона!\n";
+                    //MessageBox.Show("Неверный формат телефона!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    PhoneTB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else
+                {
+                    PhoneTB.ToolTip = null;
+                    PhoneTB.Background = Brushes.White;
+                }
 
-            // Проверка телефона
-            if (string.IsNullOrEmpty(PhoneTB.Text))
-            {
-                er += "Телефон не может быть пустым!\n";
-               // MessageBox.Show("Телефон не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                PhoneTB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else if (!System.Text.RegularExpressions.Regex.IsMatch(PhoneTB.Text, @"^\+?\d{10,15}$"))
-            {
-                er += "Неверный формат телефона!\n";
-                //MessageBox.Show("Неверный формат телефона!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                PhoneTB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else
-            {
-                PhoneTB.ToolTip = null;
-                PhoneTB.Background = Brushes.White;
-            }
+                // Проверка адреса
+                if (string.IsNullOrEmpty(AddressTB.Text))
+                {
+                    er += "Адрес не может быть пустым!\n";
+                    // MessageBox.Show("Адрес не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    AddressTB.Background = Brushes.Red;
+                    isValid = false;
+                }
+                else
+                {
+                    AddressTB.ToolTip = null;
+                    AddressTB.Background = Brushes.White;
+                }
+                //Если хотя бы одно поле невалидно
+                if (!isValid)
+                {
+                    MessageBox.Show(er, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                
+                // Если все проверки пройдены
 
-            // Проверка адреса
-            if (string.IsNullOrEmpty(AddressTB.Text))
-            {er += "Адрес не может быть пустым!\n";
-               // MessageBox.Show("Адрес не может быть пустым!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                AddressTB.Background = Brushes.Red;
-                isValid = false;
-            }
-            else
-            {
-                AddressTB.ToolTip = null;
-                AddressTB.Background = Brushes.White;
-            }
-            //Если хотя бы одно поле невалидно
-            if (!isValid)
-            {
-                MessageBox.Show(er, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+                if (_frame != null)
+                {
+                    MessageBox.Show("Регистрация прошла успешно!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    _frame.Navigate(new Pages.Main.Main(_frame));
+                }
+                else
+                {
+                    MessageBox.Show("Что-то не так!", "не повезло", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                string query = @"INSERT INTO users (login, password, role, email, fio, phone, address)
+                                     VALUES (@login, @password, @role, @email, @fio, @phone, @address)";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.Parameters.AddWithValue("@password", password); // На практике — хэш
+                cmd.Parameters.AddWithValue("@role", role);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@fio", fio);
+                cmd.Parameters.AddWithValue("@phone", phone);
+                cmd.Parameters.AddWithValue("@address", address);
 
-            // Если все проверки пройдены
+                cmd.ExecuteNonQuery();
 
-            if (_frame != null)
-            {
-                MessageBox.Show("Вы успешно вошли!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                _frame.Navigate(new Pages.Main.Main(_frame));
-            }
-            else
-            {
-                MessageBox.Show("Что-то не так!", "не повезло", MessageBoxButton.OK, MessageBoxImage.Information);
+                Window parentWindow = Window.GetWindow(this);
             }
         }
 

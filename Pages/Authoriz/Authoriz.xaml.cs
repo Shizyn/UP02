@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using MySql.Data.MySqlClient;
 
 
 namespace UP02.Pages.Authoriz
@@ -17,23 +19,48 @@ namespace UP02.Pages.Authoriz
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //LoginTextBox.Text = string.Empty;
-            PasswordBox.Password = string.Empty;
-            string login = LoginTextBox.Text.Trim();
-            string password = PasswordBox.Password.Trim();
+            string login = LoginTextBox.Text;
+            string password = PasswordBox.Password;
 
-            if (Classes.Users.Equals(login, password))
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Вы успешно вошли!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                if (_frame != null)
-                {
-                    _frame.Navigate(new Main.Main(_frame)); 
-                }
+                MessageBox.Show("Введите логин и пароль.");
+                return;
             }
-            else
+
+            using (MySqlConnection conn = new MySqlConnection("server=localhost;user=root;database=yp02;password="))
             {
-                MessageBox.Show("Неверный логин или пароль.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM users WHERE login = @login AND password = @password";
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@login", login);
+                    cmd.Parameters.AddWithValue("@password", password);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string role = reader["role"].ToString();
+                            MessageBox.Show($"Добро пожаловать, {reader["fio"]}!");
+
+                            MainWindow mainWindow = new MainWindow();
+                            mainWindow.Show();
+
+                            Window parentWindow = Window.GetWindow(this);
+                            parentWindow?.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Неверный логин или пароль.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка подключения: " + ex.Message);
+                }
             }
         }
 

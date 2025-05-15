@@ -6,7 +6,7 @@ namespace UP02.Classes.Connection
     {
         public static string server = "localhost";
         public static string login = "root";
-        public static string password = "Asdfg123";
+        public static string password = "";
         public static string DataBase = "yp02";
         //public static string Port = "3306";
         public static string con = $"server={server};uid={login};pwd={password};database={DataBase};";

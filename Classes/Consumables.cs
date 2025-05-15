@@ -75,7 +75,7 @@ namespace UP02.Classes
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@description", description);
                     cmd.Parameters.AddWithValue("@arrival_date", arrival_date.ToString("yyyy-MM-dd HH:mm:ss"));
-                    cmd.Parameters.AddWithValue("@image", image ?? (object)DBNull.Value); // правильно передаём byte[]
+                    cmd.Parameters.AddWithValue("@image", image ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@count", count);
                     cmd.Parameters.AddWithValue("@user_id", user_id);
                     cmd.Parameters.AddWithValue("@consumable_id", consumable_id);

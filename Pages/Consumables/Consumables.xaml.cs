@@ -62,7 +62,7 @@ namespace UP02.Pages.Consumables
                     image.StreamSource = ms;
                     image.EndInit();
                 }
-                image.Freeze(); // Для работы с UI
+                image.Freeze();
                 return image;
             }
             catch (Exception ex)
